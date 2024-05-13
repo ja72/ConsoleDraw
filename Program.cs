@@ -1,3 +1,6 @@
+using JA.Geometry;
+using JA.Scenes;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 using static System.Math;
 
-namespace ConsoleApp1
+namespace JA
 {
 
     class Program
@@ -30,10 +33,10 @@ namespace ConsoleApp1
 
         public Program()
         {
-            Console.SetWindowSize(90, 45);
+            //Console.SetWindowSize(90, 45);
             //Console.CancelKeyPress += (s, ev) => { cancel=true; };
 
-            this.scene = new Scene();
+            this.scene = new Scene(3f, 8f);
             this.buffer = new CBuffer();
             Setup();
             Run();
@@ -82,16 +85,16 @@ namespace ConsoleApp1
             switch (model)
             {
                 case StlMeshModel.Sphere:
-                    stl = Shape.Stl(@"Meshes\sphere.stl", ConsoleColor.Blue, 3);
+                    stl = Shape.Stl(@"Scenes\Meshes\sphere.stl", ConsoleColor.Blue, 3);
                     break;
                 case StlMeshModel.Bottle:
-                    stl = Shape.Stl(@"Meshes\bottle.stl", ConsoleColor.Blue, 60);
+                    stl = Shape.Stl(@"Scenes\Meshes\bottle.stl", ConsoleColor.Blue, 60);
                     break;
                 case StlMeshModel.Teapot:
-                    stl = Shape.Stl(@"Meshes\teapot.stl", ConsoleColor.Blue, 30);
+                    stl = Shape.Stl(@"Scenes\Meshes\teapot.stl", ConsoleColor.Blue, 30);
                     break;
                 case StlMeshModel.Cube:
-                    stl = Shape.Stl(@"Meshes\cube.stl", ConsoleColor.Blue, 1);
+                    stl = Shape.Stl(@"Scenes\Meshes\cube.stl", ConsoleColor.Blue, 1);
                     break;
             }
             return stl;
@@ -126,7 +129,7 @@ namespace ConsoleApp1
                 //AddPlane()
                 //AddTetrahedron()
                 AddCube()
-                //AddStlMesh(StlMeshModel.Bottle)
+                //AddStlMesh(StlMeshModel.Sphere)
             );
 
             scene.AddShape(
@@ -152,7 +155,8 @@ namespace ConsoleApp1
                     var tic = (float)sw.Elapsed.TotalSeconds;
                     frames++;                    
                     //Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.Write(AnsiCodes.TextColor((byte)(frames % 256)));
+                    //Console.Write(AnsiCodes.TextColor((byte)(frames % 256)));
+                    Console.Write(AnsiCodes.TextColor(Color.White, false));
                     buffer.Render();
                     Console.SetCursorPosition(2, 1);
                     Console.ForegroundColor = ConsoleColor.Yellow;

@@ -1,22 +1,23 @@
-﻿using System;
+﻿using JA.Geometry;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using static System.Math;
 
-namespace ConsoleApp1
+namespace JA.Scenes
 {
     public class Scene
     {
-        public Scene() : this(2f, 8f)
-        {
-        }
         public Scene(float modelSize, float cameraDistance)
         {
             this.InnerShapes = new List<Shape>();
             this.ModelSize = modelSize;
             this.CameraDistance = cameraDistance;
+            this.Aspect = 2;
         }
+        public float Aspect { get; set; }
         public float ModelSize { get; set; }
         public float CameraDistance { get; set; }
         protected List<Shape> InnerShapes { get; }
@@ -103,7 +104,7 @@ namespace ConsoleApp1
                 for (int j = 0; j < points.Length; j++)
                 {
                     points[j] = new Vector2(
-                        wt / 2 + screenSize / 2 * CameraDistance * nodes[j].X / (ModelSize * (CameraDistance - nodes[j].Z)),
+                        wt / 2 + Aspect * screenSize / 2 * CameraDistance * nodes[j].X / (ModelSize * (CameraDistance - nodes[j].Z)),
                         ht / 2 - screenSize / 2 * CameraDistance * nodes[j].Y / (ModelSize * (CameraDistance - nodes[j].Z)));
                 }
                 yield return new Polygon2(points);

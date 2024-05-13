@@ -1,8 +1,10 @@
-﻿using System;
+﻿using JA.Geometry;
+
+using System;
 
 using static System.Math;
 
-namespace ConsoleApp1
+namespace JA
 {
     public static class CRender
     {

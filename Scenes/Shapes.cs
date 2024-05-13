@@ -7,8 +7,9 @@ using System.Diagnostics;
 
 using static System.Math;
 using System.IO;
+using JA.Geometry;
 
-namespace ConsoleApp1
+namespace JA.Scenes
 {
 
     public abstract class Shape

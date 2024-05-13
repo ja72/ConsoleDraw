@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ConsoleApp1
+namespace JA
 {
     public enum Color
     {
